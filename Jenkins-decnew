@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                 git credentialsId: 'pinck_auto', url: 'https://github.com/zphs/myweb.git'
+                git credentialsId: 'lovelymarch14', url: 'https://github.com/zphs/java-web-app-docker.git'
             }
         }
         stage("Maven Build"){
@@ -18,13 +18,14 @@ pipeline{
         }
         stage("deploy-dev"){
             steps{
-                sshagent(['74904bbc-7155-487e-83d3-7374344704b4']) {
+                sshagent(['prakash_kelly2020']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@172.31.81.91:/tmp/apache-tomcat-9.0.59/webapps/
+                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@172.31.82.167:/home/ec2-user/apache-tomcat-9.0.59
+/webapps/
                     
-                    ssh ec2-user@172.31.81.91 /tmp/apache-tomcat-9.0.59/bin/shutdown.sh
+                    ssh ec2-user@172.31.82.167 /home/ec2-user/apache-tomcat-9.0.59/bin/shutdown.sh
                     
-                    ssh ec2-user@172.31.81.91 /tmp/apache-tomcat-9.0.59/bin/startup.sh
+                    ssh ec2-user@172.31.82.167 /home/ec2-user/apache-tomcat-9.0.59/bin/startup.sh
 
                 
                 """
