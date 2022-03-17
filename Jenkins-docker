@@ -52,7 +52,7 @@ pipeline{
                       sh "docker login -u priyaprakash -p ${DOCKER_HUB_CREDENTIALS}"
             }
             sh 'docker push priyaprakash/kunduru'
-        }
+        
       }
         
         
