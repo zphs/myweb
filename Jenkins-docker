@@ -43,7 +43,7 @@ pipeline{
             steps{
                  sh 'docker build -t priyaprakash/kunduru .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name rama10 -p 3900:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name rama12 -p 3901:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
