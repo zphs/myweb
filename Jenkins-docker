@@ -10,7 +10,8 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'yahoshuva', url: 'https://github.com/zphs/myweb.git'
+               git credentialsId: 'mahesh', url: 'https://github.com/zphs/myweb.git'
+
             }
         }
         stage("Maven Build"){
