@@ -25,7 +25,7 @@ pipeline{
                   nexusArtifactUploader artifacts: [
                        [
                             artifactId: 'myweb', 
-                            classifier: ''in.koppisetti', 
+                            classifier: 'in.koppisetti', 
                             file: "target/myweb-8.2.0-SNAPSHOT.war", 
                             type: 'war'
                        ]
