@@ -40,7 +40,7 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t priyaprakash/kunduru .'
+                 sh 'docker build -t priyaprakash/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
                  sh 'docker run -itd --name koppisetti01 -p 2001:8080 tomcat:${BUILD_NUMBER}'
              }
