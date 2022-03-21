@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-             git credentialsId: 'suryabhemm', url: 'https://github.com/zphs/myweb.git'
+              git credentialsId: 'satya', url: 'https://github.com/zphs/myweb.git'
 
 
             }
@@ -44,7 +44,7 @@ pipeline{
             steps{
                  sh 'docker build -t priyaprakash/kunduru .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name ramya01 -p 2002:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name priya01 -p 2001:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
