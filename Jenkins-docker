@@ -10,8 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-              git credentialsId: 'satya', url: 'https://github.com/zphs/myweb.git'
-
+             git credentialsId: 'nexus13', url: 'https://github.com/zphs/myweb.git'
 
             }
         }
@@ -26,13 +25,13 @@ pipeline{
                   nexusArtifactUploader artifacts: [
                        [
                             artifactId: 'myweb', 
-                            classifier: '', 
+                            classifier: ''in.koppisetti', 
                             file: "target/myweb-8.2.0-SNAPSHOT.war", 
                             type: 'war'
                        ]
                   ], 
-                  credentialsId: 'nexus3', 
-                  groupId: 'in.priya', 
+                  credentialsId: 'nexus3',
+                  groupId: 'in.koppisetti',
                   nexusUrl: '172.31.85.103:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
@@ -44,7 +43,7 @@ pipeline{
             steps{
                  sh 'docker build -t priyaprakash/kunduru .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name priya01 -p 2001:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name koppisetti01 -p 2001:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
