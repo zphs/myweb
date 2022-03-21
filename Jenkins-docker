@@ -10,8 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-             git credentialsId: 'nexus13', url: 'https://github.com/zphs/myweb.git'
-
+             git credentialsId: 'kerala', url: 'https://github.com/zphs/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -25,7 +24,7 @@ pipeline{
                   nexusArtifactUploader artifacts: [
                        [
                             artifactId: 'myweb', 
-                            classifier: 'in.koppisetti', 
+                            classifier: 'in.javahome', 
                             file: "target/myweb-8.2.0-SNAPSHOT.war", 
                             type: 'war'
                        ]
