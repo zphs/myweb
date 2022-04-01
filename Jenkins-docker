@@ -40,9 +40,9 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t priyaprakash/spring-boot-mongo .'
+                 sh 'docker build -t priyaprakash/centos .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name jai -p 2050:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name jai -p 2051:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
