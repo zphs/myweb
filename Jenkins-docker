@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-             git credentialsId: 'kerala', url: 'https://github.com/zphs/myweb.git'
+             git credentialsId: 'aprial1', url: 'https://github.com/zphs/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -30,8 +30,8 @@ pipeline{
                        ]
                   ], 
                   credentialsId: 'nexus3',
-                  groupId: 'in.koppisetti',
-                  nexusUrl: '3.88.183.111:8081', 
+                  groupId: 'in.javahome',
+                  nexusUrl: '172.31.90.206:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
@@ -42,7 +42,7 @@ pipeline{
             steps{
                  sh 'docker build -t priyaprakash/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name prasanna -p 2009:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name jai -p 2050:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
