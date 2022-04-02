@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-             git credentialsId: 'aprial1', url: 'https://github.com/zphs/myweb.git'
+             git credentialsId: 'aprial21', url: 'https://github.com/zphs/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -25,12 +25,12 @@ pipeline{
                        [
                             artifactId: 'myweb', 
                             classifier: 'in.javahome', 
-                            file: "target/myweb-8.2.0-SNAPSHOT.war", 
+                            file: "target/myweb-8.2.0.war", 
                             type: 'war'
                        ]
                   ], 
                   credentialsId: 'nexus3',
-                  groupId: 'in.javahome',
+                  groupId: 'in.lovahome', 
                   nexusUrl: '172.31.90.206:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
@@ -42,13 +42,13 @@ pipeline{
             steps{
                  sh 'docker build -t priyaprakash/centos .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name jai -p 2051:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name lavakusa -p 2055:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
              steps{
                  sh "docker login -u priyaprakash -p 123456rao"
-                 sh 'docker push priyaprakash/kunduru'
+                 sh 'docker push priyaprakash/durga'
             }
           
         
