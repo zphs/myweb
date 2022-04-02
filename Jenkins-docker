@@ -24,7 +24,7 @@ pipeline{
                   nexusArtifactUploader artifacts: [
                        [
                             artifactId: 'myweb', 
-                            classifier: 'in.javahome', 
+                            classifier: '', 
                             file: "target/myweb-8.2.0.war", 
                             type: 'war'
                        ]
