@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'devopsbyprakash@2022', url: 'https://github.com/zphs/myweb.git'
+             git credentialsId: 'devopsbyprakash@2022', url: 'https://github.com/zphs/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -29,29 +29,29 @@ pipeline{
                             type: 'war'
                        ]
                   ], 
-                  credentialsId: 'nexus3', 
-                  groupId: 'in.javahome', 
+                  credentialsId: 'nexus3',
+                  groupId: 'in.lovahome', 
                   nexusUrl: '172.31.90.206:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
-                  version: '8.2.0'  
+                  version: '8.2.0-SNAPSHOT'  
               }
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t priyaprakash/spring-boot-mongo .'
+                 sh 'docker build -t priyaprakash/ubuntu .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name jesus55 -p 2300:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name udupi -p 2056:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
              steps{
-                  withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                      sh "docker login -u priyaprakash -p ${DOCKER_HUB_CREDENTIALS}"
+                 sh "docker login -u priyaprakash -p 123456rao"
+                 sh 'docker push priyaprakash/spring-boot-mongo'
             }
-            sh 'docker push priyaprakash/spring-boot-mongo'
-        }
+          
+        
       }
         
         
