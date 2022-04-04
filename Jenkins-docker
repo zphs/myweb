@@ -1,7 +1,7 @@
 pipeline{
     agent any
      tools {
-        maven 'Maven-3.6.2'
+        maven 'Maven-3.6.1'
     }
     
     environment{
@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-             git credentialsId: 'aprial21', url: 'https://github.com/zphs/myweb.git'
+                git credentialsId: 'javahome2', url: 'https://github.com/srinivas1987devops/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -29,29 +29,29 @@ pipeline{
                             type: 'war'
                        ]
                   ], 
-                  credentialsId: 'nexus3',
-                  groupId: 'in.lovahome', 
-                  nexusUrl: '172.31.90.206:8081', 
+                  credentialsId: 'nexus3', 
+                  groupId: 'in.javahome', 
+                  nexusUrl: '172.31.33.3:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
-                  version: '8.2.0-SNAPSHOT'  
+                  version: '8.2.0'  
               }
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t priyaprakash/centos .'
+                 sh 'docker build -t deepikac2021/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name lavakusa -p 2055:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name srini36 -p 2900:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
              steps{
-                 sh "docker login -u priyaprakash -p 123456rao"
-                 sh 'docker push priyaprakash/durga'
+                  withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+                      sh "docker login -u deepikac2021 -p ${DOCKER_HUB_CREDENTIALS}"
             }
-          
-        
+            sh 'docker push deepikac2021/spring-boot-mongo'
+        }
       }
         
         
