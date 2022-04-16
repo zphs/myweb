@@ -55,7 +55,7 @@ pipeline{
               steps{
                    kubernetesDeploy(
                    configs: 'springBoot.yml', 
-                   kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+                   kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG1',
                    enableConfigSubstitution: true
             )
         }
